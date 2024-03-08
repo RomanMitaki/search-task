@@ -1,14 +1,18 @@
-import { useState } from "react";
-import { SearchForm } from "./components/SearchFrom/SearchForm";
+import { useMemo, useState } from "react";
+import { SearchForm } from "./components/SearchForm/SearchForm";
 import { SearchContext } from "./components/SearchResults/SearchContext";
 import { SearchResults } from "./components/SearchResults/SearchResults";
-import { mockUsers } from "./mockUsers";
+import { TUserFiltered } from "./utils/types.ts";
 
 export default function App() {
-  const [users] = useState(mockUsers);
+  const [searchedUsers, setSearchedUsers] = useState<TUserFiltered[]>([]);
+  const value = useMemo(
+    () => ({ searchedUsers, setSearchedUsers }),
+    [searchedUsers],
+  );
 
   return (
-    <SearchContext.Provider value={{ users }}>
+    <SearchContext.Provider value={value}>
       <SearchForm />
       <SearchResults />
     </SearchContext.Provider>

@@ -5,11 +5,11 @@ import { UserCard } from "../UserCard/UserCard";
 import "./style.css";
 
 export function SearchResults() {
-  const { users } = useContext(SearchContext);
+  const { searchedUsers } = useContext(SearchContext);
 
   return (
     <div className="usersList">
-      {users.map((user) => (
+      {searchedUsers.map((user) => (
         <UserCard {...user} />
       ))}
     </div>
