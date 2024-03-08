@@ -16,11 +16,11 @@ export const getUsersSearched = async (retries = 3, user: string) => {
     const data: TResponseSearchUsers = await res.json();
     const result: TUserFiltered[] = data.users.map((user) => ({
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      image: user.image,
+      firstName: user.firstName ?? 'Получить имя не удалось',
+      lastName: user.lastName ?? 'Получить фамилию не удалось',
+      image: user.image ?? 'Получить изображение не удалось',
       address: {
-        city: user.address.city,
+        city: user.address.city ?? 'Получить город не удалось',
       },
     }));
     return result;
